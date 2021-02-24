@@ -1,7 +1,13 @@
 <?php
+    // Check if the user is already logged in
+    session_start();
+    if ($_SESSION) {
+        if ($_SESSION['id'] > 0) {
+            header('location:chatroom.php');
+        }
+    }
     // if the form is submitted
     if (isset($_POST['login'])) {
-        session_start();
         $password = md5($_POST['password']);
         $email = $_POST['email'];
         require_once('controllers/user.php');

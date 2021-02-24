@@ -3,7 +3,7 @@
     session_start();
     if ($_SESSION) {
         if ($_SESSION['id'] > 0) {
-            header('location:chatroom.php');
+            header('location:views/chatroom.php');
         }
     }
     // if the form is submitted

@@ -44,9 +44,9 @@
     font-weight: bolder;
     font-family: cursive;
 }
-.profile p > i{
-    color: rgb(156, 226, 156);
-    font-size: 14px;
+.profile p .fa{
+    color: rgb(40, 247, 40);
+    font-size: 10px !important;
     margin-right: 5px;
 }
 .flex-btn{

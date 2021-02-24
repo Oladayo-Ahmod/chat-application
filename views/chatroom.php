@@ -1,12 +1,12 @@
 <?php
 session_start();
 if ($_SESSION['id'] < 1) {
-    header('location:index.php');
+    header('location:../index.php');
     exit;
 }
 else{
     $user_id = $_SESSION['id'];
-    require_once('controllers/user.php');
+    require_once('../controllers/user.php');
     $user = new User;
     $profiles = $user->getProfile($user_id);
     // $username = $user->getUsername($user_id);
@@ -19,10 +19,10 @@ else{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat application | Chat room</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/fontawesome.min.css">
-    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/fontawesome.min.css">
+    <link rel="stylesheet" href="../css/all.css">
 </head>
 <body>
     <div class="container chat-room">
@@ -46,7 +46,7 @@ else{
                     <?php } ?>
                         <div class="flex-btn">
                             <a href="profile.php" class="btn btn-primary">Profile</a>
-                            <a href="logout.php" class="btn btn-danger">Logout</a>
+                            <a href="../logout.php" class="btn btn-danger">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -62,9 +62,9 @@ else{
 
 
 
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/script.js"></script>  
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/script.js"></script>  
 </body>
 </html>

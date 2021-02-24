@@ -128,14 +128,14 @@
                             // setting session username
                             $_SESSION['username'] = $fetch['username'];
                             //redirect to the dashboard if the passwords match
-                            header('location:chatroom.php');
+                            header('location:views/chatroom.php');
                         }
                         else{
                             $error = '<div class="alert alert-danger">An error occurs try later</div>';
                         }
                     }
                     else{
-                        $error = '<div class="alert alert-danger">Incorrect Email or Password </div>'.mysqli_error($this->conn);
+                        $error = '<div class="alert alert-danger">Incorrect Email or Password </div>';
                     }
                 }
                     $data['error_message'] = $error;
@@ -162,6 +162,51 @@
                 $message['error'] = $error; 
                 return $data;
             }
+            // update user method
+            public function update_user($user_id,$username,$email,$password,$confirm){
+                $error = '';
+                if(isset($_POST['update']) && empty($_FILES['picture'])){
+                    $hash = md5(md5($password).$user_id);
+                    $query = "UPDATE `users` SET username = ? , `email` = ? ,`password` = ? WHERE id = ? LIMIT 1";
+                    $stmt = $this->conn->prepare($query);
+                    $stmt->bind_param('sssi',$username,$email,$hash,$user_id);
+                    if ($stmt->execute()){
+                        $error = '<div class="alert alert-success">Profile update successfully</div>';
+                    }
+                    else{
+                        $error = '<div class="alert alert-danger">Error updating profile</div>';
+                    }
+                }
+                // update the profile if picture is not null
+                else if (isset($_POST['update']) && !empty($_FILES['picture'])) {
+                     // check if the password match
+                    if ($password !== $confirm) {
+                        $error = '<div class="alert alert-warning" role="alert">Passwords do not match</div>';
+                    }
+                    // check if it is an image
+                    else if(!preg_match("!image!",$_FILES['picture']['type'])){
+                        $error = '<div class="alert alert-warning" role="alert">Please select an Image! </div>';
+                    }
+                    else{
+                        $explode = explode(".",$_FILES['picture']['name']);
+                        $path = "../images/" .round(microtime(true)) . '.'. strtolower(end($explode));
+                        move_uploaded_file($_FILES['picture']['tmp_name'],$path);
+                        $hash = md5(md5($password).$user_id);
+                        $query = "UPDATE `users` SET username = ? , `email` = ? ,`password` = ?, `profile` = ? WHERE id = ? LIMIT 1";
+                        $stmt = $this->conn->prepare($query);
+                        $stmt->bind_param('ssssi',$username,$email,$hash,$path,$user_id);
+                        if ($stmt->execute()){
+                            $error = '<div class="alert alert-success">Profile update successfully</div>';
+                        }
+                        else{
+                            $error = '<div class="alert alert-danger">Error updating profile</div>';
+                        }
+                    }
+                }
+        
+                $message['error'] = $error;
+                return $message;
+        }
 
     }
 ?>

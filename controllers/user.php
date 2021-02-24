@@ -142,5 +142,26 @@
                     return $data;
             }
 
+            // get profile of the user
+            public function getProfile($user_id){
+                $error = '';
+                $data = null;
+                $query = "SELECT * FROM users WHERE id = ?";
+                $stmt = $this->conn->prepare($query);
+                $stmt->bind_param('i',$user_id);
+                if ($stmt->execute()) {
+                    $result = $stmt->get_result();
+                    while($fetch = $result->fetch_assoc()){
+                        $data[] = $fetch;
+                    }
+                }
+                else{
+                    $error = '<div class="alert alert-danger">An error occurs try later</div>';
+                }
+
+                $message['error'] = $error; 
+                return $data;
+            }
+
     }
 ?>

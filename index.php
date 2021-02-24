@@ -1,6 +1,7 @@
 <?php
     // if the form is submitted
     if (isset($_POST['login'])) {
+        session_start();
         $password = md5($_POST['password']);
         $email = $_POST['email'];
         require_once('controllers/user.php');

@@ -4,3 +4,52 @@
 .login{
     margin-top:300px !important;
 }
+.chat-room{
+    margin-top:50px !important;
+}
+.chat-box{
+    background:#f1f1f1 !important;
+    height:500px;
+}
+.chat-head{
+    margin-bottom: 0;
+    border-radius: 5px;
+    background:#dedada;
+    font-family:'cursive','Open Sans', 'Helvetica Neue', sans-serif !important;
+}
+.chat-message{
+    width:95% !important;
+    border: 1px solid #f0f0f0;
+}
+.chat-icon{
+    position: relative;
+    top: -10px;
+    left: -4px;
+    /* border: 1px solid #f0f0f0; */
+    /* color: rgb(156, 245, 156); */
+} 
+.profile > img{
+    clip-path: circle(
+        100px at center
+    );
+}
+.profile > img:hover{
+    filter: blur(100);
+    /* rotate: ; */
+}
+.profile p{
+    margin-top: -60px;
+    font-size: medium;
+    font-size:16px;
+    font-weight: bolder;
+    font-family: cursive;
+}
+.profile p > i{
+    color: rgb(156, 226, 156);
+    font-size: 14px;
+    margin-right: 5px;
+}
+.flex-btn{
+    display: flex;
+    justify-content: space-around;
+}

@@ -35,7 +35,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Application</title>
+    <title>Chat Application | Sign up</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.css">
@@ -72,7 +72,10 @@
                       <label for="image">Profile picture</label><br>
                       <input type="file" name="picture" id="" placeholder="" aria-describedby="helpId">
                     </div>
-                    <button class="btn btn-primary my-2" name="register">Submit</button>
+                    <div style="display:flex;justify-content:space-between;">
+                        <button class="btn btn-primary my-2 ml-aut" name="register">Submit</button>
+                        <a href="index.php" class="btn btn-danger my-2 mr-auo" name="login">Login</a>
+                    </div>
                 </form>
             </div>
         </div>

@@ -60,7 +60,7 @@ else if (isset($_POST['update']) && !empty($_FILES['picture'])) {
                         <?php 
                         foreach($profiles as $profile){?>
                          <div class="profile">
-                            <img class="card-img-top" src="<?=$profile['profile'];?>" alt="">
+                            <img class="card-img-top" src="../<?=$profile['profile'];?>" alt="">
                         </div>
                     </div>
                 </div>
@@ -96,11 +96,11 @@ else if (isset($_POST['update']) && !empty($_FILES['picture'])) {
                     </div>
                     <div class="form-group">
                       <label for="password">Change password</label>
-                      <input type="password" required class="form-control" name="password" id="" aria-describedby="emailHelpId" placeholder="">
+                      <input type="password" required class="form-control" name="password" placeholder="if null, enter previous password">
                     </div>
                     <div class="form-group">
                       <label for="password">Confirm password</label>
-                      <input type="password" required class="form-control" name="c_password" id="" aria-describedby="emailHelpId" placeholder="">
+                      <input type="password" required class="form-control" name="c_password" placeholder="if null, confirm previous password">
                     </div>
                     <div class="form-group">
                       <label for="status">Change Picture</label>
@@ -114,7 +114,7 @@ else if (isset($_POST['update']) && !empty($_FILES['picture'])) {
                 <div class="card shadow profile">
                     <?php
                     foreach($profiles as $profile){?>
-                    <img class="card-img-top" src="<?=$profile['profile'];?>" alt="">
+                    <img class="card-img-top" src="../<?=$profile['profile'];?>" alt="">
                     <div class="card-body">
                         <p class="text-center "><i class="fa fa-circle"> </i><?=$profile['username']; ?></p>
                     <?php } ?>

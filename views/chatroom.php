@@ -27,20 +27,29 @@ else{
 <body>
     <div class="container chat-room">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 my-4">
                 <h4 class="text-secondary shadow chat-head text-center">Chat Room</h4>
                 <div class="shadow chat-box">
                 </div>
-                <form action="" method="post">
-                    <textarea class="chat-message shadow" name="" id="" rows="1"></textarea>
-                    <button class="btn chat-icon btn-primary btn-sm"><i class=" fa fa-paper-plane"></i></button>
+                <form action="" method="POST" id="chat-form">
+                    <div class="input-group">
+                        <textarea class="chat-message shadow" name="message"
+                        data-parsley-pattern="/^[a-zA-Z0-9\s]+$/" data-parsley-maxLength="1000"
+                         id="message" rows="2" placeholder="Type a message here..."></textarea>
+                        <div class="input-group-append">
+                            <button name="send" id="send" class="btn btn-primary btn-sm"><i class=" fa fa-paper-plane"></i></button>
+                        </div>
+                        <!-- setting user id to the form -->
+                        <input type="hidden" id="user_id" value="<?= $user_id;?>">
+                        <div id="validation_error"></div>
+                    </div>
                 </form>
             </div>
             <div class="col-md-4">
                 <div class="card shadow profile">
                     <?php
                     foreach($profiles as $profile){?>
-                    <img class="card-img-top" src="<?=$profile['profile'];?>" alt="">
+                    <img class="card-img-top" src="../<?=$profile['profile'];?>" alt="">
                     <div class="card-body">
                         <p class="text-center "><i class="fa fa-circle"> </i><?=$profile['username']; ?></p>
                     <?php } ?>
@@ -61,10 +70,11 @@ else{
 
 
 
-
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/popper.min.js"></script>
 <script src="../js/script.js"></script>  
+<script src="../js/parsley.min.js"></script> 
+</script>
 </body>
 </html>

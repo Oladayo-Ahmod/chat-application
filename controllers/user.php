@@ -131,7 +131,7 @@
                             header('location:views/chatroom.php');
                         }
                         else{
-                            $error = '<div class="alert alert-danger">An error occurs try later</div>';
+                            $error = '<div class="alert alert-danger">Incorrect Email or Password </div>';
                         }
                     }
                     else{

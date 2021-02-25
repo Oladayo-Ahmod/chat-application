@@ -5,7 +5,7 @@
     margin-top:300px !important;
 }
 .chat-room{
-    margin-top:50px !important;
+    margin-top:20px !important;
 }
 .chat-box{
     background:#f1f1f1 !important;
@@ -29,6 +29,7 @@
     /* color: rgb(156, 245, 156); */
 } 
 .profile > img{
+    
     clip-path: circle(
         100px at center
     );

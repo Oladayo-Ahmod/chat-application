@@ -10,6 +10,8 @@
 .chat-box{
     background:#f1f1f1 !important;
     height:500px;
+    word-wrap: break-word !important;
+    word-break: break-all !important;
 }
 .chat-head{
     margin-bottom: 0;
@@ -27,7 +29,7 @@
     left: -4px;
     /* border: 1px solid #f0f0f0; */
     /* color: rgb(156, 245, 156); */
-} 
+}
 .profile > img{
     
     clip-path: circle(

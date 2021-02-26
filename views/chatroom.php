@@ -28,8 +28,8 @@ else{
     <div class="container chat-room">
         <div class="row">
             <div class="col-md-8 my-4">
-                <h4 class="text-secondary shadow chat-head text-center">Chat Room</h4>
-                <div class="shadow chat-box">
+                <h4 class="text-secondary shadow chat-head mb-4 text-center">Chat Room</h4>
+                <div class="shadow chat-box" id="message_area">
                 </div>
                 <form action="" method="POST" id="chat-form">
                     <div class="input-group">
@@ -41,8 +41,8 @@ else{
                         </div>
                         <!-- setting user id to the form -->
                         <input type="hidden" id="user_id" value="<?= $user_id;?>">
-                        <div id="validation_error"></div>
                     </div>
+                    <div id="validation_error"></div>
                 </form>
             </div>
             <div class="col-md-4">

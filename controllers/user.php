@@ -1,16 +1,8 @@
 <?php
     class User{
-        // private $user_id;
-        // private $user_name;
-        // private $user_password;
-        // private $user_email;
-        // private $user_profile;
-        // private $user_created_on;
-        // private $login_status;
-        // private $connect;
-
+        
         public function __construct(){
-            require_once('database.php');
+            require_once dirname(__DIR__) . "/connection/database.php";
             $database = new Database;
             $this->conn = $database->connect();
         }

@@ -2,7 +2,7 @@
 namespace MyApp;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
-
+// require_once dirname(__DIR__) . "\controllers\user.php";
 class Chat implements MessageComponentInterface {
     protected $clients;
 
@@ -21,12 +21,21 @@ class Chat implements MessageComponentInterface {
         $numRecv = count($this->clients) - 1;
         echo sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
             , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
+            $data = json_decode($msg,true);
+            $user_id = $data['userId']; // user id
+            $username = $data['name']; // username
+            // set the time of the chat
+            $data['time'] = date('y-m-d h:i:s');
 
         foreach ($this->clients as $client) {
-            if ($from !== $client) {
+            if ($from == $client) {
                 // The sender is not the receiver, send to each client connected
-                $client->send($msg);
+                $data['from'] = "me";
             }
+            else{
+                $data['from'] = $username;
+            }
+            $client->send(json_encode($data));
         }
     }
 

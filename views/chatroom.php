@@ -51,6 +51,7 @@ else{
                     foreach($profiles as $profile){?>
                     <img class="card-img-top" src="../<?=$profile['profile'];?>" alt="">
                     <div class="card-body">
+                        <input type="hidden" id="username" value="<?= $profile['username'];?>">
                         <p class="text-center "><i class="fa fa-circle"> </i><?=$profile['username']; ?></p>
                     <?php } ?>
                         <div class="flex-btn">

@@ -2,7 +2,7 @@
 namespace MyApp;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
-// require_once dirname(__DIR__) . "\controllers\user.php";
+require_once dirname(__DIR__) . "\controllers\message.php";
 class Chat implements MessageComponentInterface {
     protected $clients;
 
@@ -24,8 +24,14 @@ class Chat implements MessageComponentInterface {
             $data = json_decode($msg,true);
             $user_id = $data['userId']; // user id
             $username = $data['name']; // username
+            $sent_msg = $data['msg']; // message
             // set the time of the chat
             $data['time'] = date('y-m-d h:i:s');
+            $date = $data['time'];
+            // instantiate the message class
+            $message = new \Message;
+            // pass the data to the method to insert into the database
+            $message->message_data($user_id,$sent_msg,$username,$date);
 
         foreach ($this->clients as $client) {
             if ($from == $client) {

@@ -7,8 +7,8 @@ $(document).ready(function(){
     conn.onmessage = function(e) {
         console.log(e.data);
         var data = JSON.parse(e.data); // convert the data javascript object
-        var row = '';
-        var bg_class = '';
+        let row = '';
+        let bg_class = '';
         var msg_style = 'word-break:break-all;font-size:14px;padding:2px 2px;';
         // check if the client is also the receiver
         if (data.from == "me") {
@@ -20,7 +20,7 @@ $(document).ready(function(){
             bg_class = 'text-dark alert-success';
         }
         // set up the bootstrap and html
-        var html_data = "<div class='"+row+"'><div class='my-1 col-sm-10'><div style='"+msg_style+"' class=' shadow-sm alert-light "+bg_class+
+        var html_data = "<div class='"+row+"'><div class='my-1 col-sm-10'><div style='"+msg_style+"' class=' shadow-sm alert "+bg_class+
         "'><b>"+data.from+' . '+"</b>"+data.msg+"<br/><div class='text-right'><small><i>"+data.time+"</i></small></div></div></div></div>";
         $('#message_area').append(html_data);
         $('#message').val("");

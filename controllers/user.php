@@ -200,5 +200,21 @@
                 return $message;
         }
 
+        // fetch all registered and enabled users
+        public function get_users(){
+            $data = null;
+            $status = "enable";
+            $query = "SELECT * FROM `users` WHERE `status` = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param('s',$status);
+            if ($stmt->execute()) {
+                $result = $stmt->get_result();
+                while($fetch = $result->fetch_assoc()){
+                    $data[] = $fetch;
+                }
+            }
+            return $data;
+        }
+
     }
 ?>

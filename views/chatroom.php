@@ -13,8 +13,10 @@ else{
     $user = new User; // instantiate the User class
     $profiles = $user->getProfile($user_id); // fetch the user data by the id
     require_once('../controllers/message.php'); // require the message controller
-    $msg_class = new Message;
-    $messages = $msg_class->fetch_msg();
+    $msg_class = new Message; // instantiate Message class
+    $messages = $msg_class->fetch_msg(); // fetch all messages
+    $user = new User; // instantiate the User class
+    $display_users = $user->get_users();
 }
 ?>
 <!DOCTYPE html>
@@ -64,7 +66,7 @@ else{
                         <!-- setting user id to the form -->
                         <input type="hidden" id="user_id" value="<?= $user_id;?>">
                     </div>
-                    <div id="validation_error"></div>
+                    <div class="text-danger" id="validation_error"></div>
                 </form>
             </div>
             <div class="col-md-4">
@@ -84,9 +86,19 @@ else{
                 </div>
                 <ul class="list-group my-4">
                     <li class="list-group-item active">Users list</li>
-                    <li class="list-group-item">Item</li>
-                    <li class="list-group-item disabled">Disabled item</li>
-                </ul>
+                    <?php
+                        foreach($display_users as $users){
+                            if ($users['id'] !== $_SESSION['id']) {
+                             echo ' <li class="list-group-item">
+                             <img style="border-radius:50%;" src="../'.$users['profile'].'"class="mr-2" alt="profile picture" height="50px;" width="50px">'
+                             .$users['username'].'<i style="font-size:10px;" class="fa ml-2 fa-circle text-danger"> </i>
+                         </li>';
+                            }
+                        }
+                    ?>
+                   
+                    
+                </ul> 
             </div>
         </div>
     </div>

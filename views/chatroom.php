@@ -1,16 +1,20 @@
 <?php
+ini_set('display_errors','1');
+ini_set('display_startup_errors','1');
+error_reporting(E_ALL);
 session_start();
 if ($_SESSION['id'] < 1) {
     header('location:../index.php');
     exit;
 }
 else{
-    $user_id = $_SESSION['id'];
-    require_once('../controllers/user.php');
-    $user = new User;
-    $profiles = $user->getProfile($user_id);
-    // $username = $user->getUsername($user_id);
-    // print_r($profiles);
+    $user_id = $_SESSION['id']; // get user id
+    require_once('../controllers/user.php'); // require the user controller
+    $user = new User; // instantiate the User class
+    $profiles = $user->getProfile($user_id); // fetch the user data by the id
+    require_once('../controllers/message.php'); // require the message controller
+    $msg_class = new Message;
+    $messages = $msg_class->fetch_msg();
 }
 ?>
 <!DOCTYPE html>
@@ -30,6 +34,24 @@ else{
             <div class="col-md-8 my-4">
                 <h4 class="text-secondary shadow chat-head mb-4 text-center">Chat Room</h4>
                 <div class="shadow chat-box" id="message_area">
+                    <?php
+                        foreach ($messages as $message) {
+                            if ($_SESSION['id'] == $message['user_id']) {
+                                $from  = "me";
+                                $bg_class = 'text-dark alert-light';
+                                $row ='row justify-content-end';
+                            }
+                            else{
+                                $from = $message['username'];
+                                $bg_class = 'text-dark alert-success';
+                                $row ='row justify-content-start';
+                            }
+                            $msg_style = 'word-break:break-all;font-size:14px;padding:2px 2px;';
+                            echo  "<div class='".$row."'><div class='my-1 col-sm-10'><div style='".$msg_style."' class=' shadow-sm alert ".$bg_class.
+                            "'><b>".$from.' . '."</b>".$message['msg']."<br/><div class='text-right'><small><i>".$message['created_on']."</i></small></div></div></div></div>";
+
+                        }
+                    ?>
                 </div>
                 <form action="" method="POST" id="chat-form">
                     <div class="input-group">

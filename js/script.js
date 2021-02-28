@@ -28,6 +28,7 @@ $(document).ready(function(){
     };
 
     $('#chat-form').parsley(); // parsley validation error
+    $('#message_area').scrollTop($('#message_area')[0].scrollHeight);
     $('#chat-form').on('submit',function(event){
         event.preventDefault();
         // if the parsley validation is valid
@@ -45,6 +46,7 @@ $(document).ready(function(){
                 name:username
             };
             conn.send(JSON.stringify(data)); // send the data amd convert in to json string
+            $('#message_area').scrollTop($('#message_area')[0].scrollHeight);
         }
     })
 })

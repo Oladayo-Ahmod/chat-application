@@ -9,7 +9,7 @@
 }
 .chat-box{
     background:#f1f1f1 !important;
-    height:500px;
+    height:fit-content !important;
     word-wrap: break-word !important;
     word-break: break-all !important;
 }
@@ -22,6 +22,7 @@
 .chat-message{
     width:95% !important;
     border: 1px solid #f0f0f0;
+    bottom:0;
 }
 .chat-icon{
     position: relative;

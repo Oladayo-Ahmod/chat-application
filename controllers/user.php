@@ -117,8 +117,14 @@
                         if ($fetch['password'] ==  $hash) {
                             //setting the session id
                             $_SESSION['id'] = $fetch['id'];
+                            $user_id = $_SESSION['id'];
                             // setting session username
                             $_SESSION['username'] = $fetch['username'];
+                            $status = "online";
+                            $update = "UPDATE users set login_status = ? WHERE id = ? LIMIT 1 ";
+                            $stmt = $this->conn->prepare($update);
+                            $stmt->bind_param('si',$status,$user_id);
+                            $stmt->execute();
                             //redirect to the dashboard if the passwords match
                             header('location:views/chatroom.php');
                         }
@@ -216,5 +222,13 @@
             return $data;
         }
 
+        // set the user login status to offline when user logs out
+        public function change_login_status($user_id){
+            $status = "offline";
+            $update = "UPDATE users set login_status = ? WHERE id = ? LIMIT 1 ";
+            $stmt = $this->conn->prepare($update);
+            $stmt->bind_param('si',$status,$user_id);
+            $stmt->execute();
+        }
     }
 ?>

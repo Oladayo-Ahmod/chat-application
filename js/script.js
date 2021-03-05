@@ -49,4 +49,30 @@ $(document).ready(function(){
             $('#message_area').scrollTop($('#message_area')[0].scrollHeight);
         }
     })
+    // status section
+    $('#update').on('click',function(event){
+        event.preventDefault();
+        var status = $('#status').html();
+        var user_id = $('#user_id').val();
+        $.ajax({
+            url:'../controllers/save_status.php',
+            data:{'status':status,'user_id':user_id},
+            type:'POST',
+            function(data){
+                console.log(data);
+            }
+        })
+
+        $(function(){
+            // setInterval(function(){
+                $.ajax({
+                    url:'../controllers/show_status.php',
+                    success:function(res){
+                        $('#status').html(res);
+                    }
+                })
+            // })
+        })
+    })
+    
 })

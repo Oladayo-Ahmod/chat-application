@@ -78,8 +78,8 @@ else{
                     <img class="card-img-top" src="../<?=$profile['profile'];?>" alt="">
                     <div class="card-body">
                         <p class="text-center  text-sm" data-parsley-maxLength="30">
-                            <span class="mr-1"contenteditable="true">Click to edit the status</span>
-                            <i class=" fa text-primary fa-paper-plane"></i>
+                            <span class="mr-1"contenteditable="true" id="status">status here</span>
+                            <i class=" fa text-primary fa-paper-plane" id="update"></i>
                         </p>
                         <p class="text-center my-2 "><i class="fa fa-circle"> </i><?=$profile['username']; ?></p>
                     <?php } ?>

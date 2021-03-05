@@ -8,8 +8,11 @@
     margin-top:20px !important;
 }
 .chat-box{
-    background:#f1f1f1 !important;
-    height:fit-content !important;
+    /* background:#f1f1f1 !important; */
+    height:500px !important;
+    overflow-y: scroll;
+    overflow-x:hidden;
+    background-image: url('../images/1614766012.jpg');
     word-wrap: break-word !important;
     word-break: break-all !important;
 }
@@ -23,6 +26,17 @@
     width:95% !important;
     border: 1px solid #f0f0f0;
     bottom:0;
+}
+.ajax{
+    margin-top: -12px !important;
+    height:fit-content !important;
+    width: fit-content !important;
+}
+
+@media screen and (max-width:800px){
+    .chat-message{
+        width:85% !important;
+    }
 }
 .chat-icon{
     position: relative;
@@ -41,16 +55,27 @@
     filter: blur(100);
     /* rotate: ; */
 }
-.profile p{
+.profile p:nth-child(2){
     margin-top: -60px;
     font-size: medium;
     font-size:16px;
     font-weight: bolder;
     font-family: cursive;
 }
-.profile p .fa{
+.profile p:nth-child(1){
+    margin: -70px 0 20px 0;
+    font-size:14px;
+    font-weight: lighter;
+    font-family: cursive;
+}
+.profile p .fa:nth-child(1){
     color: rgb(40, 247, 40);
     font-size: 10px !important;
+    margin-right: 5px;
+}
+.profile p .fa:nth-child(2){
+    color: rgb(40, 247, 40);
+    font-size: 15px !important;
     margin-right: 5px;
 }
 .flex-btn{

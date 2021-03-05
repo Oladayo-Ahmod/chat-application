@@ -9,6 +9,8 @@ else{
     require_once('../controllers/user.php');
     $user = new User;
     $profiles = $user->getProfile($user_id);
+    $user = new User; // instantiate the User class
+    $display_users = $user->get_users();
 }
 // if the update button is clicked without changing picture
 if (isset($_POST['update']) && empty($_FILES['picture'])) {
@@ -116,7 +118,11 @@ else if (isset($_POST['update']) && !empty($_FILES['picture'])) {
                     foreach($profiles as $profile){?>
                     <img class="card-img-top" src="../<?=$profile['profile'];?>" alt="">
                     <div class="card-body">
-                        <p class="text-center "><i class="fa fa-circle"> </i><?=$profile['username']; ?></p>
+                        <p class="text-center  text-sm" data-parsley-maxLength="30">
+                            <span class="mr-1"contenteditable="true">Click to edit the status</span>
+                            <i class=" fa text-primary fa-paper-plane"></i>
+                        </p>
+                        <p class="text-center my-2 "><i class="fa fa-circle"> </i><?=$profile['username']; ?></p>
                     <?php } ?>
                         <div class="flex-btn">
                             <a href="chatroom.php" class="btn btn-primary">Chat room</a>
@@ -124,11 +130,9 @@ else if (isset($_POST['update']) && !empty($_FILES['picture'])) {
                         </div>
                     </div>
                 </div>
-                <ul class="list-group my-4">
-                    <li class="list-group-item active">Users list</li>
-                    <li class="list-group-item">Item</li>
-                    <li class="list-group-item disabled">Disabled item</li>
-                </ul>
+            <!-- profile section -->
+            <?php include '../components/profile.php'; ?>
+            <!-- profile section ends -->
             </div>
         </div>
     </div>

@@ -35,9 +35,11 @@ else{
         <div class="row">
             <div class="col-md-8 my-4">
                 <h4 class="text-secondary shadow chat-head mb-4 text-center">Chat Room</h4>
-                <div class="shadow chat-box" id="message_area">
+                <div class="shadow p-1 pt-3 chat-box" id="message_area">
                     <?php
                         foreach ($messages as $message) {
+                            $date = strtotime($message['created_on']);
+                            $date = date('D, F',$date); 
                             if ($_SESSION['id'] == $message['user_id']) {
                                 $from  = "me";
                                 $bg_class = 'text-dark alert-light';
@@ -48,9 +50,9 @@ else{
                                 $bg_class = 'text-dark alert-success';
                                 $row ='row justify-content-start';
                             }
-                            $msg_style = 'word-break:break-all;font-size:14px;padding:2px 2px;';
-                            echo  "<div class='".$row."'><div class='my-1 col-sm-10'><div style='".$msg_style."' class=' shadow-sm alert ".$bg_class.
-                            "'><b>".$from.' . '."</b>".$message['msg']."<br/><div class='text-right'><small><i>".$message['created_on']."</i></small></div></div></div></div>";
+                            $msg_style = 'word-break:break-all;font-size:14px;padding:0px 0px;width:content-width;border-radius:10px;';
+                            echo  "<div class='".$row."'><div class='ajax mx-3 '><div style='".$msg_style."' class=' px-1 shadow-sm alert ".$bg_class.
+                            "'><b>".$from.' . '."</b>".$message['msg']."<br/><div class='text-right'><small><i>".$date."</i></small></div></div></div></div>";
 
                         }
                     ?>
@@ -75,8 +77,11 @@ else{
                     foreach($profiles as $profile){?>
                     <img class="card-img-top" src="../<?=$profile['profile'];?>" alt="">
                     <div class="card-body">
-                        <input type="hidden" id="username" value="<?= $profile['username'];?>">
-                        <p class="text-center "><i class="fa fa-circle"> </i><?=$profile['username']; ?></p>
+                        <p class="text-center  text-sm" data-parsley-maxLength="30">
+                            <span class="mr-1"contenteditable="true">Click to edit the status</span>
+                            <i class=" fa text-primary fa-paper-plane"></i>
+                        </p>
+                        <p class="text-center my-2 "><i class="fa fa-circle"> </i><?=$profile['username']; ?></p>
                     <?php } ?>
                         <div class="flex-btn">
                             <a href="profile.php" class="btn btn-primary">Profile</a>
@@ -84,27 +89,9 @@ else{
                         </div>
                     </div>
                 </div>
-                <ul class="list-group my-4">
-                    <li class="list-group-item active">Users list</li>
-                    <?php
-                        foreach($display_users as $users){
-                            if ($users['id'] !== $_SESSION['id']) {
-                                if ($users['login_status'] == "online") {
-                                    $status = "success";
-                                }
-                                else{
-                                    $status = "danger";
-                                }
-                             echo ' <li class="list-group-item">
-                             <img style="border-radius:50%;" src="../'.$users['profile'].'"class="mr-2" alt="profile picture" height="50px;" width="50px">'
-                             .$users['username'].'<i style="font-size:10px;" class="fa ml-2 fa-circle text-'.$status.'"> </i>
-                         </li>';
-                            }
-                        }
-                    ?>
-                   
-                    
-                </ul> 
+             <!-- profile section -->
+             <?php include '../components/profile.php'; ?>
+            <!-- profile section ends -->
             </div>
         </div>
     </div>

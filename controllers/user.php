@@ -187,8 +187,9 @@
                     }
                     else{
                         $explode = explode(".",$_FILES['picture']['name']);
-                        $path = "../images/" .round(microtime(true)) . '.'. strtolower(end($explode));
-                        move_uploaded_file($_FILES['picture']['tmp_name'],$path);
+                        $img_path = "../images/" .round(microtime(true)) . '.'. strtolower(end($explode));
+                        $path = "images/" .round(microtime(true)) . '.'. strtolower(end($explode));
+                        move_uploaded_file($_FILES['picture']['tmp_name'],$img_path);
                         $hash = md5(md5($password).$user_id);
                         $query = "UPDATE `users` SET username = ? , `email` = ? ,`password` = ?, `profile` = ? WHERE id = ? LIMIT 1";
                         $stmt = $this->conn->prepare($query);

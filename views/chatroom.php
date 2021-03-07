@@ -51,7 +51,7 @@ else{
                                 $row ='row justify-content-start';
                             }
                             $msg_style = 'word-break:break-all;font-size:14px;padding:0px 0px;width:content-width;border-radius:10px;';
-                            echo  "<div class='".$row."'><div class='ajax mx-3 '><div style='".$msg_style."' class=' px-1 shadow-sm alert ".$bg_class.
+                            $style =  "<div class='".$row."'><div class='ajax mx-3 '><div style='".$msg_style."' class=' px-1 shadow-sm alert ".$bg_class.
                             "'><b>".$from.' . '."</b>".$message['msg']."<br/><div class='text-right'><small><i>".$date."</i></small></div></div></div></div>";
 
                         }

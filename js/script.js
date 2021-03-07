@@ -23,6 +23,7 @@ $(document).ready(function(){
         var html_data = "<div class='"+row+"'><div class='my-1 col-sm-10'><div style='"+msg_style+"' class=' shadow-sm alert "+bg_class+
         "'><b>"+data.from+' . '+"</b>"+data.msg+"<br/><div class='text-right'><small><i>"+data.time+"</i></small></div></div></div></div>";
         $('#message_area').append(html_data);
+        // $('#message_area').append(sql_data);
         $('#message').val("");
 
     };
